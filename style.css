@@ -370,5 +370,7 @@ footer {
 
     .clue-button {
         width: 100%;
+        flex: 0 1 auto;
+        min-height: 70px;
     }
 }
