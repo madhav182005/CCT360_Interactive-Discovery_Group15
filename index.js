@@ -94,6 +94,7 @@ function inspectBag() {
     document.getElementById("inspect-bag").innerHTML = "Backpack Checked ✓";
     document.getElementById("room-message").innerHTML =
         "EVIDENCE 03: The backpack is untouched. Nothing else is missing. This looks less like theft and more like someone moved the drive deliberately.";
+    checkRoomProgress();
 }
 
 
@@ -149,7 +150,7 @@ function askBarista() {
     document.getElementById("ask-barista").className = "clue-button found";
     document.getElementById("ask-barista").innerHTML = "Barista Asked ✓";
     document.getElementById("cafe-message").innerHTML =
-        "The barista remembers someone from your group returning to the study area just before closing, but cannot remember where they went next.";
+        "The barista remembers someone from your group leaving a coffee cup and returning to the study rooms. Before leaving, they mentioned putting something important somewhere safe. The receipt might reveal where.";
 }
 
 
@@ -160,6 +161,9 @@ function unlockLocker() {
     if (laptopFound === false || noteFound === false || pathClueFound === false) {
         document.getElementById("locker-message").innerHTML =
             "You are missing key evidence. The case should only be solvable after following the trail.";
+    } else if (enteredCode.length !== 4) {
+        document.getElementById("locker-message").innerHTML =
+            "Please enter a four-digit code.";
     } else if (enteredCode === "1147") {
         lockerOpened = true;
         prepareFinalScene();
@@ -183,26 +187,28 @@ function prepareFinalScene() {
 }
 
 function reviewEvidence() {
-    let evidenceText = "";
+    let evidenceText = "<strong>CASE EVIDENCE SUMMARY</strong><ol>";
 
-    if (laptopFound === true) {
-        evidenceText += "11:47 PM autosave timestamp. ";
+   if (laptopFound === true) {
+        evidenceText += "<li>Laptop: 11:47 PM autosave timestamp.</li>";
     }
 
     if (noteFound === true) {
-        evidenceText += "Sticky note naming B17. ";
+        evidenceText += "<li>Sticky Note: Locker B17 identified.</li>";
     }
 
-    if (bagFound === true) {
-        evidenceText += "Untouched backpack suggested the drive was not stolen. ";
+     if (bagFound === true) {
+        evidenceText += "<li>Backpack: No signs of theft were found.</li>";
     }
 
     if (pathClueFound === true) {
-        evidenceText += "Your chosen trail independently confirmed B17. ";
+        evidenceText += "<li>Investigation Trail: Locker B17 was confirmed.</li>";
     }
 
+    evidenceText += "</ol>";
+
     if (lockerOpened === true) {
-        evidenceText += "Locker opened with code 1147. Case closed.";
+        evidenceText += "<strong>Case Closed:</strong> Locker B17 was opened using code 1147. The missing USB drive was recovered.";
     }
 
     document.getElementById("final-evidence").innerHTML = evidenceText;
