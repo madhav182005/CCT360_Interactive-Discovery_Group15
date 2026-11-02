@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11:47 PM - The Missing Drive</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="top-bar">
+        <div>
+            <p class="eyebrow">CASE FILE 017</p>
+            <h1>11:47 PM: The Missing Drive</h1>
+        </div>
+
+        <div class="case-status">
+            <p>Evidence: <span id="evidence-count">0</span>/4</p>
+            <button id="restart-button" class="small-button">Restart Case</button>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Scene 1: Introduction -->
+        <section id="scene-intro" class="scene active-scene">
+            <div class="scene-layout">
+                <div class="scene-text">
+                    <p class="scene-number">01 / CASE OPENED</p>
+                    <h2>Your presentation is tomorrow. The USB is gone.</h2>
+                    <p>
+                        It is 11:47 PM. Your group has already left campus, but the USB drive
+                        containing the final presentation is missing from the study room.
+                        You have one job: retrace the evening, follow the evidence, and find it.
+                    </p>
+                    <p class="hint">Curiosity matters. Inspect details before moving on.</p>
+                    <button id="start-button" class="primary-button">Begin Investigation</button>
+                </div>
+
+                <div class="scene-image-wrap">
+                    <img src="images/campus-night.jpg" alt="University building at night" class="scene-image">
+                    <div class="image-label">11:47 PM · Campus</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 2: Study Room -->
+        <section id="scene-room" class="scene">
+            <div class="scene-layout">
+                <div class="scene-image-wrap">
+                    <img src="images/study-room.jpg" alt="Late-night university study room with a desk" class="scene-image">
+                    <div class="image-label">Study Room 204</div>
+                </div>
+
+                <div class="scene-text">
+                    <p class="scene-number">02 / THE STUDY ROOM</p>
+                    <h2>Start where the drive disappeared.</h2>
+                    <p>Three details stand out. Choose what to inspect.</p>
+
+                    <div class="interaction-grid">
+                        <button id="inspect-laptop" class="clue-button">Inspect Laptop</button>
+                        <button id="inspect-note" class="clue-button">Read Sticky Note</button>
+                        <button id="inspect-bag" class="clue-button">Check Backpack</button>
+                    </div>
+
+                    <div id="room-message" class="message-box" aria-live="polite">
+                        Nothing has been inspected yet.
+                    </div>
+
+                    <button id="continue-choice" class="primary-button" disabled>Choose Where to Search Next</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 3: Branch Choice -->
+        <section id="scene-choice" class="scene">
+            <div class="centered-scene">
+                <p class="scene-number">03 / FOLLOW THE TRAIL</p>
+                <h2>The clues point outside the room.</h2>
+                <p>You only need one route, but the evidence will look different depending on your choice.</p>
+
+                <div class="path-grid">
+                    <button id="library-path" class="path-card">
+                        <span class="path-title">Library Trail</span>
+                        <span>Follow the printing activity and late-night checkout records.</span>
+                    </button>
+
+                    <button id="cafe-path" class="path-card">
+                        <span class="path-title">Café Trail</span>
+                        <span>Follow the coffee receipt and ask what happened near closing time.</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 4A: Library -->
+        <section id="scene-library" class="scene">
+            <div class="scene-layout">
+                <div class="scene-image-wrap">
+                    <img src="images/library.jpg" alt="Quiet university library aisle at night" class="scene-image">
+                    <div class="image-label">Library · Lower Level</div>
+                </div>
+
+                <div class="scene-text">
+                    <p class="scene-number">04A / LIBRARY TRAIL</p>
+                    <h2>The library is almost empty.</h2>
+                    <p>The printer station and checkout desk are still active.</p>
+
+                    <div class="interaction-grid">
+                        <button id="inspect-printer" class="clue-button">Check Printer Log</button>
+                        <button id="inspect-library-desk" class="clue-button">Check Desk Slip</button>
+                    </div>
+
+                    <div id="library-message" class="message-box" aria-live="polite">
+                        Search for something that confirms the locker clue.
+                    </div>
+
+                    <button id="library-to-locker" class="primary-button" disabled>Go to Locker Hall</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 4B: Cafe -->
+        <section id="scene-cafe" class="scene">
+            <div class="scene-layout">
+                <div class="scene-image-wrap">
+                    <img src="images/cafe.jpg" alt="Campus cafe counter near closing time" class="scene-image">
+                    <div class="image-label">Campus Café · Closing</div>
+                </div>
+
+                <div class="scene-text">
+                    <p class="scene-number">04B / CAFÉ TRAIL</p>
+                    <h2>The café is closing, but one table is untouched.</h2>
+                    <p>A receipt and a handwritten note are still sitting beside an empty cup.</p>
+
+                    <div class="interaction-grid">
+                        <button id="inspect-receipt" class="clue-button">Inspect Receipt</button>
+                        <button id="ask-barista" class="clue-button">Ask the Barista</button>
+                    </div>
+
+                    <div id="cafe-message" class="message-box" aria-live="polite">
+                        Search for something that confirms the locker clue.
+                    </div>
+
+                    <button id="cafe-to-locker" class="primary-button" disabled>Go to Locker Hall</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 5: Locker -->
+        <section id="scene-locker" class="scene">
+            <div class="scene-layout">
+                <div class="scene-image-wrap">
+                    <img src="images/locker.jpg" alt="Row of campus lockers in a quiet hallway" class="scene-image">
+                    <div class="image-label">Locker Hall · B17</div>
+                </div>
+
+                <div class="scene-text">
+                    <p class="scene-number">05 / LOCKER B17</p>
+                    <h2>You found the locker. Now prove you followed the evidence.</h2>
+                    <p>
+                        The sticky note gave you the locker. One earlier clue gave you the four-digit code.
+                    </p>
+
+                    <label for="locker-code">Enter the four-digit code</label>
+                    <input id="locker-code" type="text" inputmode="numeric" maxlength="4" placeholder="0000">
+                    <button id="unlock-button" class="primary-button">Unlock B17</button>
+
+                    <div id="locker-message" class="message-box" aria-live="polite">
+                        The keypad is waiting.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 6: Final Reveal -->
+        <section id="scene-final" class="scene">
+            <div class="scene-layout">
+                <div class="scene-text">
+                    <p class="scene-number">06 / CASE CLOSED</p>
+                    <h2>The drive was never stolen.</h2>
+                    <p id="final-path-text"></p>
+
+                    <div class="final-card">
+                        <p class="final-label">Recovered Item</p>
+                        <h3>Presentation_Final_v8.usb</h3>
+                        <p>
+                            Inside the locker is the missing USB and a small note:
+                            “Moved this somewhere safe. You always leave it beside the laptop. — Sam”
+                        </p>
+                    </div>
+
+                    <button id="review-case" class="secondary-button">Review Your Evidence</button>
+                    <div id="final-evidence" class="message-box" aria-live="polite"></div>
+                </div>
+
+                <div class="scene-image-wrap">
+                    <img src="images/usb-drive.jpg" alt="USB flash drive on a desk" class="scene-image">
+                    <div class="image-label">Recovered · 12:06 AM</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>CCT360 · Interactive Mystery Experience</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>
