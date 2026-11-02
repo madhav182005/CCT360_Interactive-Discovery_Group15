@@ -1,0 +1,374 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: #0b1220;
+    color: #edf2f7;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    padding: 22px 6vw;
+    border-bottom: 1px solid #2b3648;
+    background-color: #101a2b;
+}
+
+.top-bar h1 {
+    margin: 4px 0 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.eyebrow,
+.scene-number,
+.final-label {
+    margin: 0;
+    color: #f0b35a;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.case-status {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    white-space: nowrap;
+}
+
+.case-status p {
+    margin: 0;
+    color: #b8c3d3;
+}
+
+main {
+    width: min(1180px, 90%);
+    margin: 0 auto;
+}
+
+.scene {
+    display: none;
+    min-height: 74vh;
+    padding: 70px 0;
+}
+
+.active-scene {
+    display: block;
+}
+
+.scene-layout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 55px;
+}
+
+.scene-text,
+.scene-image-wrap {
+    flex: 1 1 0;
+}
+
+.scene-text {
+    max-width: 560px;
+}
+
+.scene-text h2,
+.centered-scene h2 {
+    margin: 14px 0 18px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(34px, 5vw, 58px);
+    line-height: 1.05;
+    font-weight: 500;
+}
+
+.scene-text p,
+.centered-scene p {
+    color: #bac5d5;
+    font-size: 18px;
+    line-height: 1.65;
+}
+
+.hint {
+    padding-left: 15px;
+    border-left: 3px solid #f0b35a;
+}
+
+.scene-image-wrap {
+    position: relative;
+}
+
+.scene-image {
+    display: block;
+    width: 100%;
+    min-height: 380px;
+    max-height: 580px;
+    object-fit: cover;
+    border: 1px solid #344158;
+    border-radius: 4px;
+    filter: saturate(0.85) contrast(1.05);
+}
+
+.image-label {
+    position: absolute;
+    left: 18px;
+    bottom: 18px;
+    padding: 8px 11px;
+    background-color: rgba(8, 14, 25, 0.88);
+    color: #f7d8a6;
+    border: 1px solid rgba(240, 179, 90, 0.55);
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.primary-button,
+.secondary-button,
+.small-button,
+.clue-button,
+.path-card {
+    border: 1px solid transparent;
+    border-radius: 3px;
+    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.primary-button {
+    margin-top: 20px;
+    padding: 14px 20px;
+    background-color: #f0b35a;
+    color: #101722;
+    font-weight: 700;
+}
+
+.primary-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    background-color: #ffd08c;
+}
+
+.secondary-button,
+.small-button {
+    padding: 11px 15px;
+    background-color: transparent;
+    color: #e9eef6;
+    border-color: #52617a;
+}
+
+.secondary-button:hover,
+.small-button:hover {
+    border-color: #f0b35a;
+    color: #f6c67e;
+}
+
+.interaction-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 26px 0 18px;
+}
+
+.clue-button {
+    flex: 1 1 150px;
+    min-height: 70px;
+    padding: 14px;
+    background-color: #152238;
+    color: #edf2f7;
+    border-color: #33425b;
+    text-align: left;
+}
+
+.clue-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    border-color: #f0b35a;
+}
+
+.clue-button.found {
+    border-color: #6aa67a;
+    background-color: #183126;
+    color: #cfe8d5;
+}
+
+.message-box {
+    min-height: 66px;
+    margin-top: 18px;
+    padding: 16px 18px;
+    border-left: 3px solid #596983;
+    background-color: #111b2c;
+    color: #c4cfdd;
+    line-height: 1.55;
+}
+
+.centered-scene {
+    max-width: 920px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.path-grid {
+    display: flex;
+    gap: 22px;
+    margin-top: 42px;
+}
+
+.path-card {
+    flex: 1 1 0;
+    min-height: 220px;
+    padding: 28px;
+    background-color: #131f33;
+    color: #bfcadc;
+    border-color: #33425b;
+    text-align: left;
+}
+
+.path-card:hover {
+    transform: translateY(-4px);
+    border-color: #f0b35a;
+    background-color: #182943;
+}
+
+.path-title {
+    display: block;
+    margin-bottom: 14px;
+    color: #f6c67e;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 30px;
+}
+
+label {
+    display: block;
+    margin: 28px 0 8px;
+    color: #d7dfeb;
+    font-weight: 700;
+}
+
+#locker-code {
+    width: 180px;
+    padding: 14px 15px;
+    border: 1px solid #52617a;
+    border-radius: 3px;
+    outline: none;
+    background-color: #0f1929;
+    color: #ffffff;
+    letter-spacing: 6px;
+    font-size: 22px;
+}
+
+#locker-code:focus {
+    border-color: #f0b35a;
+}
+
+.final-card {
+    margin-top: 28px;
+    padding: 24px;
+    border: 1px solid #33425b;
+    background-color: #121e31;
+}
+
+.final-card h3 {
+    margin: 8px 0 12px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 28px;
+}
+
+footer {
+    padding: 22px 6vw;
+    border-top: 1px solid #2b3648;
+    color: #738198;
+    font-size: 13px;
+    text-align: center;
+}
+
+@media (max-width: 820px) {
+    .top-bar,
+    .scene-layout,
+    .path-grid {
+        flex-direction: column;
+    }
+
+    .top-bar {
+        align-items: flex-start;
+    }
+
+    .case-status {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .scene {
+        padding: 48px 0;
+    }
+
+    .scene-layout {
+        align-items: stretch;
+        gap: 34px;
+    }
+
+    .scene-text {
+        max-width: none;
+    }
+
+    .scene-image {
+        min-height: 300px;
+    }
+
+    .path-card {
+        min-height: 170px;
+    }
+}
+
+@media (max-width: 520px) {
+    main {
+        width: 88%;
+    }
+
+    .top-bar h1 {
+        font-size: 20px;
+    }
+
+    .case-status {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .scene-text h2,
+    .centered-scene h2 {
+        font-size: 38px;
+    }
+
+    .scene-text p,
+    .centered-scene p {
+        font-size: 16px;
+    }
+
+    .interaction-grid {
+        flex-direction: column;
+    }
+
+    .clue-button {
+        width: 100%;
+    }
+}
